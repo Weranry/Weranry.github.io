@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>进制转换工具</title>
+    <link rel="stylesheet" href="../assets/css/style.css"> <!-- 确保路径正确指向CSS文件 -->
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2>进制转换器</h2>
+            <div class="input-group">
+                <label for="numberInput">输入数字:</label>
+                <input type="text" id="numberInput" placeholder="请输入数字">
+            </div>
+            
+            <div class="input-group">
+                <label for="baseInput">原始进制:</label>
+                <select id="baseInput">
+                    <option value="2">二进制</option>
+                    <option value="8">八进制</option>
+                    <option value="10" selected>十进制</option>
+                    <option value="16">十六进制</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="baseOutput">目标进制:</label>
+                <select id="baseOutput">
+                    <option value="2">二进制</option>
+                    <option value="8">八进制</option>
+                    <option value="10">十进制</option>
+                    <option value="16">十六进制</option>
+                </select>
+            </div>
+
+            <button onclick="convert()">转换</button>
+            <p id="result"></p>
+        </div>
+    </div>
+</body>
+</html>
