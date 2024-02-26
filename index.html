@@ -2,16 +2,86 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>我的项目主页</title>
+    <title>WeranryTool beta β</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 0;
+        }
+        .tool-card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: left;
+            background-color: #fff;
+            width: 200px;
+            height: 120px;
+            margin: 10px;
+        }
+        .tool-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .tool-description {
+            color: #666;
+        }
+        .tool-link {
+            display: block;
+            text-decoration: none;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>欢迎来到我的项目</h1>
-    <p>这是一个包含多个小工具的项目。请使用下面的链接访问特定的工具。</p>
+    <h1>WeranryTool beta β</h1>
+    <p>这只是一个测试页面 β 0.01</p>
     <ul>
-        <li><a href="pages/convert.html">进制转换工具</a></li>
-        <li><a href="pages/clock.html">时钟</a></li>
-        <li><a href="pages/laohuangli.html">老黄历</a></li>
-        <!-- 未来可以在这里添加更多工具的链接 -->
+        <li>
+            <div class="tool-card">
+                <div class="tool-title">进制转换工具</div>
+                <div class="tool-description">一个用于转换不同进制的实用工具</div>
+                <a href="pages/convert.html" class="tool-link">使用</a>
+            </div>
+        </li>
+        <li>
+            <div class="tool-card">
+                <div class="tool-title">时钟</div>
+                <div class="tool-description">一个做可行性研究的小工具可以显示当前时间</div>
+                <a href="pages/clock.html" class="tool-link">使用</a>
+            </div>
+        </li>
+        <li>
+            <div class="tool-card">
+                <div class="tool-title">老黄历</div>
+                <div class="tool-description">一个JavaScript库的可行性研究小工具的实际运用</div>
+                <a href="pages/laohuangli.html" class="tool-link">使用</a>
+            </div>
+        </li>
+                <li>
+            <div class="tool-card">
+                <div class="tool-title">烟花</div>
+                <div class="tool-description">可以放烟花，懒得点也可以看它自己放</div>
+                <a href="pages/yanhua.html" class="tool-link">使用</a>
+            </div>
+        </li>
+        <!-- 可以添加更多工具卡片 -->
     </ul>
 </body>
 </html>
