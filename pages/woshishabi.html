@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>循环播放音频示例</title>
+<title>我是傻逼？</title>
 </head>
 <body>
 <script>
 function playAudio() {
     try {
-        let audio = new Audio('../assets/file.wav'); // 文件路径相对于HTML文件所在目录的上一级目录的 assets 文件夹
-        audio.volume = 1.0; // 设置音量为最大值（0.0 到 1.0 之间）
-        audio.loop = true; // 设置循环播放
+        let audio = new Audio('../assets/file.wav'); 
+        audio.volume = 1.0; 
+        audio.loop = true; 
         audio.play();
     } catch (e) {
         console.error('无法播放音频:', e);
