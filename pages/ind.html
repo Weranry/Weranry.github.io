@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas 日历卡片</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .card {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 350px;
+            max-width: 90%;
+        }
+        canvas {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <canvas id="calendarCanvas"></canvas>
+    </div>
+
+    <script>
+        // 预设的日历数据
+        const calendarData = {
+            SolarYear: "2024年",
+            SolarMonth: "10月",
+            SolarDay: "28日",
+            WeekDay: "星期一",
+            lunarMonth: "九月",
+            lunarDay: "廿六",
+            ganzhiYear: "甲辰年",
+            ganzhiMonth: "甲戌月",
+            ganzhiDay: "乙丑日",
+            yuexiang: "蛾眉残月",
+            wuhou: "草木黄落",
+            hou: "霜降 二候",
+            shujiu: "N/A",
+            fu: "N/A"
+        };
+
+        function drawCalendar(data) {
+            const canvas = document.getElementById('calendarCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // 设置 canvas 大小
+            canvas.width = 700;
+            canvas.height = 1000;
+
+            // 背景
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // 标题
+            ctx.fillStyle = '#333333';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(data.SolarYear + data.SolarMonth, canvas.width / 2, 60);
+
+            // 日期
+            ctx.font = 'bold 160px Arial';
+            ctx.fillText(data.SolarDay.replace('日', ''), canvas.width / 2, 280);
+
+            // 星期
+            ctx.font = '36px Arial';
+            ctx.fillText(data.WeekDay, canvas.width / 2, 340);
+
+            // 农历
+            ctx.font = '32px Arial';
+            ctx.fillText(data.lunarMonth + data.lunarDay, canvas.width / 2, 400);
+
+            // 其他信息
+            ctx.font = '24px Arial';
+            ctx.textAlign = 'left';
+            const infoY = 480;
+            const lineHeight = 40;
+            ctx.fillText(`农历：${data.ganzhiYear} ${data.ganzhiMonth} ${data.ganzhiDay}`, 50, infoY);
+            ctx.fillText(`月相：${data.yuexiang}`, 50, infoY + lineHeight);
+            ctx.fillText(`物候：${data.wuhou}`, 50, infoY + lineHeight * 2);
+            ctx.fillText(`节气：${data.hou}`, 50, infoY + lineHeight * 3);
+            if (data.shujiu !== 'N/A') {
+                ctx.fillText(`数九：${data.shujiu}`, 50, infoY + lineHeight * 4);
+            }
+            if (data.fu !== 'N/A') {
+                ctx.fillText(`伏：${data.fu}`, 50, infoY + lineHeight * 5);
+            }
+        }
+
+        // 绘制日历
+        drawCalendar(calendarData);
+
+        // 注释掉的 API 调用代码
+        /*
+        async function fetchCalendarData() {
+            try {
+                const response = await fetch('https://api.weranry.com/getperpetual');
+                if (!response.ok) {
+                    throw new Error('网络响应不正常');
+                }
+                const data = await response.json();
+                drawCalendar(data);
+            } catch (error) {
+                console.error('获取数据失败:', error);
+                // 在 canvas 上显示错误信息
+                const canvas = document.getElementById('calendarCanvas');
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#666666';
+                ctx.font = '24px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('获取数据失败，请稍后再试。', canvas.width / 2, canvas.height / 2);
+            }
+        }
+
+        fetchCalendarData();
+        */
+    </script>
+</body>
+</html>
