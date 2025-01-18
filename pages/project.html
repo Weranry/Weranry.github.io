@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目展示页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0; /* 去掉 body 的内边距 */
+            display: flex;
+            flex-direction: column; /* 设置为垂直方向 */
+            align-items: center; /* 居中对齐 */
+            min-height: 100vh; /* 确保 body 至少占满整个视口高度 */
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* 添加居中显示 */
+            gap: 20px; /* 卡片之间的间距 */
+            max-width: 1200px; /* 设置最大宽度 */
+            margin: 80px auto 80px; /* 上边距留出导航栏的高度，底边距留出底部栏的高度 */
+            width: 100%; /* 确保容器宽度填满可用空间 */
+        }
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            flex: 1 1 calc(50% - 20px); /* 两列布局，允许收缩到最小宽度 */
+            max-width: 400px; /* 减小卡片的最大宽度限制 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+            position: relative; /* 为版本和日期标签定位 */
+            height: 120px; /* 固定卡片高度 */
+        }
+        .card:hover {
+            transform: scale(1.02); /* 鼠标悬停效果 */
+        }
+        .card h3 {
+            margin: 0;
+            font-size: 1.4em; /* 调整标题字体大小 */
+        }
+        .card p {
+            margin: 5px 0;
+            color: #999; /* 字体颜色更浅 */
+            font-size: 0.9em; /* 字体更小 */
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 60px; /* 固定描述文本区域的高度 */
+        }
+        .date-container {
+            position: absolute;
+            bottom: 10px;
+            left: 15px; /* 使整个容器靠左 */
+            display: flex; /* 使用 flex 布局 */
+            gap: 5px; /* 设置两个框之间的间距 */
+        }
+        .version-date, .update-date {
+            background-color: #e0e0e0;
+            border-radius: 12px;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            color: #555;
+            transition: transform 0.2s; /* 添加动画效果 */
+        }
+        .version-date:hover, .update-date:hover {
+            transform: scale(1.05); /* 鼠标悬停时缩放 */
+        }
+        .version-date {
+            left: 15px; /* 版本号框的位置 */
+            margin-right: 5px; /* 添加右边距以使两个框挨在一起 */
+            display: inline-block; /* 使其成为行内块元素 */
+        }
+        .update-date {
+            right: 15px; /* 更新日期框的位置 */
+            display: inline-block; /* 使其成为行内块元素 */
+        }
+        @media (max-width: 600px) {
+            .card {
+                flex: 1 1 100%; /* 小屏幕下单列布局，允许收缩到最小宽度 */
+            }
+        }
+        /* 新增导航栏样式 */
+        .navbar {
+            background-color: #f9f9f9; /* 与卡片相同的背景颜色 */
+            color: #333; /* 字体颜色 */
+            padding: 10px; /* 内边距 */
+            display: flex; /* 使用 flex 布局 */
+            justify-content: center; /* 居中对齐 */
+            gap: 20px; /* 导航项之间的间距 */
+            width: 100%; /* 使导航栏宽度填满可用空间 */
+            position: fixed; /* 固定导航栏 */
+            top: 0; /* 顶部对齐 */
+            left: 0; /* 左侧对齐 */
+            z-index: 1000; /* 确保导航栏在其他内容之上 */
+            border: 1px solid #ddd; /* 添加边框 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+        }
+        .navbar a {
+            color: #333; /* 链接颜色 */
+            text-decoration: none; /* 去掉下划线 */
+            font-size: 1.1em; /* 字体大小 */
+            padding: 5px 10px; /* 添加内边距 */
+            border-radius: 4px; /* 圆角效果 */
+            transition: transform 0.2s; /* 添加动画效果 */
+        }
+        .navbar a:hover {
+            text-decoration: underline; /* 悬停时添加下划线 */
+            transform: scale(1.05); /* 悬停时缩放 */
+        }
+        /* 新增底部栏样式 */
+        .footer {
+            background-color: #f9f9f9; /* 与卡片相同的背景颜色 */
+            color: #333; /* 字体颜色 */
+            padding: 10px; /* 内边距 */
+            width: 100%; /* 使底部栏宽度填满可用空间 */
+            border-top: 1px solid #ddd; /* 添加顶部边框 */
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+            text-align: center; /* 文本居中 */
+            position: fixed; /* 固定底部栏 */
+            bottom: 0; /* 底部对齐 */
+            left: 0; /* 左侧对齐 */
+            height: 60px; /* 固定高度 */
+            z-index: 1000; /* 确保底部栏在其他内容之上 */
+            margin-top: 20px; /* 添加与最后一个卡片的间隔 */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar"> <!-- 新增导航栏 -->
+        <a href="../index.html">主页</a>
+        <a href="article.html">文章</a>
+        <a href="project.html">项目</a>
+        <a href="about.html">关于</a>
+    </div>
+    <div class="container"> <!-- 添加容器以控制卡片的布局 -->
+        <div class="card" onclick="location.href='../project/pages/convert.html'">
+            <h3>进制转换器</h3>
+            <p>用JavaScript制作了一个进制转换器</p>
+            <div class="date-container">
+                <div class="version-date">
+                    <span>1.0.0</span>
+                </div>
+                <div class="update-date">
+                    <span>2023-01-08</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="location.href='../project/pages/woshishabi.html'">
+            <h3>我是傻逼</h3>
+            <p>听了聪聪宝宝的意见，做了一个扫码能大声播放我是傻逼的网页</p>
+            <div class="date-container">
+                <div class="version-date">
+                    <span>1.0.1</span>
+                </div>
+                <div class="update-date">
+                    <span>2023-02-01</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="location.href='../project/pages/laohuangli.html'">
+            <h3>程序员黄历</h3>
+            <p>在一个日历算法交流群看到的有趣的项目，自己练习了一下CSS给他重写了界面</p>
+            <div class="date-container">
+                <div class="version-date">
+                    <span>1.0.2</span>
+                </div>
+                <div class="update-date">
+                    <span>2023-02-01</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" onclick="location.href='../project/pages/yanhua.html'">
+            <h3>放烟花</h3>
+            <p>从网上看到的一个代码，特别修改了一下，并且学习了一下JavaScript知识</p>
+            <div class="date-container">
+                <div class="version-date">
+                    <span>1.0.3</span>
+                </div>
+                <div class="update-date">
+                    <span>2021-02-20</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer"> <!-- 新增底部栏 -->
+        <p>Weranry© 2021 - <span id="currentYear"></span> 项目展示页. 已经稳定运行 <span id="daysRunning"></span> 天.</p>
+    </div>
+    <script>
+        const startDate = new Date('2021-02-20');
+        const today = new Date();
+        const timeDiff = today - startDate;
+        const daysRunning = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        document.getElementById('daysRunning').textContent = daysRunning;
+        document.getElementById('currentYear').textContent = today.getFullYear();
+    </script>
+</body>
+</html>

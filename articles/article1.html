@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>燃料电池负极反应方程式</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+
+        .navbar, .footer {
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: fixed;
+            left: 0;
+            z-index: 1000;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            top: 0;
+        }
+
+        .footer {
+            bottom: 0;
+            height: 60px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: transform 0.2s;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+            transform: scale(1.05);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 80px auto; /* 留出导航栏和底部栏的高度 */
+            width: 90%;
+            padding: 20px;
+            box-sizing: border-box;
+            align-items: flex-start;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+            width: 80%; /* 设置卡片宽度为 80% */
+            height: auto; /* 高度自动调整 */
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        pre {
+            background: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .date-label {
+            background-color: #e0e0e0; /* 日期背景颜色 */
+            border-radius: 12px; /* 圆角效果 */
+            padding: 5px 10px; /* 内边距 */
+            font-size: 1em; /* 字体大小 */
+            color: #555; /* 字体颜色 */
+            margin: 10px 0; /* 上下边距 */
+            display: inline-block; /* 使其成为行内块元素 */
+        }
+
+        .tag {
+            background-color: #007bff; /* 标签背景颜色 */
+            border-radius: 12px; /* 圆角效果 */
+            padding: 5px 10px; /* 内边距 */
+            font-size: 1em; /* 字体大小 */
+            color: white; /* 字体颜色 */
+            margin: 5px; /* 上下边距 */
+            display: inline-block; /* 使其成为行内块元素 */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="../home.html">主页</a>
+        <a href="../pages/article.html">文章</a>
+        <a href="../pages/project.html">项目</a>
+        <a href="../pages/about.html">关于</a>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h1>关于燃料电池负极反应方程式的简便书写方式</h1>
+            <div class="date-label">2021-02-20</div>
+            <div class="tags">
+                <span class="tag">化学</span>
+                <span class="tag">电池</span>
+            </div>
+            <h2>首先需要了解</h2>
+            <pre>
+CXHYOZ + (X + Y/4 - Z/2) O2 === XCO2 + Y/2 H2O
+            </pre>
+            <p>即符合 CXHYOZ 通式的物质（X,Y,Z 取值均为自然数）在氧气中燃烧的通式。</p>
+            <p>通过此通式配平得到的方程式各项系数不一定为整数，因而需要将其各项系数化为正整数，得到的 CXHYOZ 的系数记为 M 而 O2 的系数记为 N。</p>
+            <p>通过燃烧通式以及正极反应同时相减可得到以下负极反应方程式：</p>
+            <p>注明：因以碱性物质作为电解质的燃料电池产生的 CO2 会与之反应，故应相加二氧化碳与氢氧根反应通式消去。</p>
+            <h2>得到如下通式</h2>
+            <pre>
+CXHYOZ - (4X + Y - 2Z)e- + (2X + Y/2 - Z)O2 === -XCO2 + Y/2 H2O   熔融氧化物
+CXHYOZ - (4X + Y - 2Z)e- + (6X + Y - 2Z)OH- === -XCO32- + (3X + Y - 2Z)H2O   碱性电解质
+CXHYOZ - (4X + Y - 2Z)e- + (4X + Y - 2Z)OH- === -XCO2 + (2X + Y - 2Z)H2O  酸性电解质
+CXHYOZ - (4X + Y - 2Z)e- + (2X + Y/2 - Z)CO32- === (3X + Y/2 - Z)CO2 + Y/2 H2O   熔融碳酸盐
+            </pre>
+            <p>书写时，方程式内相关系数应该扩展相同倍数，而此倍数即为 M。</p>
+            <p>另外，电池的正极反应式也应扩展相同倍数，而此倍数即为 N。</p>
+            <h2>最后附上正极反应式通式</h2>
+            <pre>
+O2 + 4H+ + 4e- = 2H2O  酸性电解质
+O2 + 4e- + 2CO2 = 2CO32-  碱性电解质
+O2 + 4e- = 2O2-      熔融氧化物
+O2 + 2CO2 + 4e- = 2CO32- 熔融碳酸盐
+            </pre>
+            <p>注意：碱性电解质溶液为电解质溶液时记住具体情况具体分析，另外附上不与二氧化碳反应的情况：</p>
+            <pre>
+CXHYOZ - (4X + Y - 2Z)e- + (4X + Y - 2Z)OH- === -XCO2 + (2X + Y - 2Z)H2O 
+O2 + 4e- + 2H2O = 4OH-
+            </pre>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Weranry© 2021 - <span id="currentYear"></span> 燃料电池负极反应方程式的简便书写方式. 已经稳定运行 <span id="daysRunning"></span> 天.</p>
+    </div>
+    <script>
+        const startDate = new Date('2021-02-20');
+        const today = new Date();
+        const timeDiff = today - startDate;
+        const daysRunning = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        document.getElementById('daysRunning').textContent = daysRunning;
+        document.getElementById('currentYear').textContent = today.getFullYear();
+    </script>
+</body>
+</html>
+

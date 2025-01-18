@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章展示页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0; /* 去掉 body 的内边距 */
+            display: flex;
+            flex-direction: column; /* 设置为垂直方向 */
+            align-items: center; /* 居中对齐 */
+            min-height: 100vh; /* 确保 body 至少占满整个视口高度 */
+        }
+        .container {
+            display: flex;
+            flex-direction: column; /* 单列布局 */
+            justify-content: center; /* 添加居中显示 */
+            gap: 20px; /* 卡片之间的间距 */
+            max-width: 800px; /* 设置最大宽度 */
+            margin: 80px auto 100px; /* 上边距留出导航栏的高度，底边距留出底部栏的高度 */
+            width: 100%; /* 确保容器宽度填满可用空间 */
+        }
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            cursor: pointer;
+            position: relative; /* 为按钮和日期定位 */
+            min-height: 200px; /* 设置最小高度以避免遮挡 */
+        }
+        .card:hover {
+            transform: scale(1.02); /* 鼠标悬停效果 */
+        }
+        .card h3 {
+            margin: 0;
+            font-size: 1.4em; /* 调整标题字体大小 */
+        }
+        .card p {
+            margin: 5px 0;
+            color: #999; /* 字体颜色更浅 */
+            font-size: 0.9em; /* 字体更小 */
+            max-height: 120px; /* 限制摘要高度 */
+            overflow: hidden; /* 超出部分隐藏 */
+        }
+        .tags {
+            display: flex; /* 使用 flex 布局 */
+            flex-wrap: wrap; /* 允许换行 */
+            gap: 5px; /* 标签之间的间距 */
+            margin-top: 10px; /* 标签与描述之间的间距 */
+        }
+        .tag {
+            background-color: #e0e0e0; /* 标签背景颜色 */
+            border-radius: 12px; /* 圆角效果 */
+            padding: 5px 10px; /* 内边距 */
+            font-size: 0.8em; /* 字体大小 */
+            color: #555; /* 字体颜色 */
+            transition: transform 0.2s; /* 添加动画效果 */
+        }
+        .tag:hover {
+            transform: scale(1.05); /* 悬停时缩放 */
+        }
+        .read-more {
+            background-color: #007bff; /* 按钮背景颜色 */
+            color: white; /* 字体颜色 */
+            padding: 5px 10px; /* 内边距 */
+            border-radius: 4px; /* 圆角效果 */
+            text-align: center; /* 文本居中 */
+            cursor: pointer; /* 鼠标指针 */
+            transition: transform 0.2s; /* 添加动画效果 */
+            position: absolute; /* 绝对定位 */
+            bottom: 40px; /* 距离底部 */
+            left: 15px; /* 距离左侧 */
+            height: 30px; /* 固定高度 */
+            line-height: 30px; /* 垂直居中 */
+        }
+        .read-more:hover {
+            transform: scale(1.05); /* 悬停时缩放 */
+        }
+        .date-label {
+            background-color: #e0e0e0; /* 日期标签背景颜色 */
+            border-radius: 12px; /* 圆角效果 */
+            padding: 5px 10px; /* 内边距 */
+            font-size: 0.8em; /* 字体大小 */
+            color: #555; /* 字体颜色 */
+            position: absolute; /* 绝对定位 */
+            bottom: 10px; /* 距离底部 */
+            right: 15px; /* 距离右侧 */
+            transition: transform 0.2s; /* 添加动画效果 */
+            height: 30px; /* 固定高度 */
+            line-height: 30px; /* 垂直居中 */
+        }
+        .date-label:hover {
+            transform: scale(1.05); /* 悬停时缩放 */
+        }
+        /* 新增导航栏样式 */
+        .navbar {
+            background-color: #f9f9f9; /* 与卡片相同的背景颜色 */
+            color: #333; /* 字体颜色 */
+            padding: 10px; /* 内边距 */
+            display: flex; /* 使用 flex 布局 */
+            justify-content: center; /* 居中对齐 */
+            gap: 20px; /* 导航项之间的间距 */
+            width: 100%; /* 使导航栏宽度填满可用空间 */
+            position: fixed; /* 固定导航栏 */
+            top: 0; /* 顶部对齐 */
+            left: 0; /* 左侧对齐 */
+            z-index: 1000; /* 确保导航栏在其他内容之上 */
+            border: 1px solid #ddd; /* 添加边框 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+        }
+        .navbar a {
+            color: #333; /* 链接颜色 */
+            text-decoration: none; /* 去掉下划线 */
+            font-size: 1.1em; /* 字体大小 */
+            padding: 5px 10px; /* 添加内边距 */
+            border-radius: 4px; /* 圆角效果 */
+            transition: transform 0.2s; /* 添加动画效果 */
+        }
+        .navbar a:hover {
+            text-decoration: underline; /* 悬停时添加下划线 */
+            transform: scale(1.05); /* 悬停时缩放 */
+        }
+        /* 新增底部栏样式 */
+        .footer {
+            background-color: #f9f9f9; /* 与卡片相同的背景颜色 */
+            color: #333; /* 字体颜色 */
+            padding: 10px; /* 内边距 */
+            width: 100%; /* 使底部栏宽度填满可用空间 */
+            border-top: 1px solid #ddd; /* 添加顶部边框 */
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+            text-align: center; /* 文本居中 */
+            position: fixed; /* 固定底部栏 */
+            bottom: 0; /* 底部对齐 */
+            left: 0; /* 左侧对齐 */
+            height: 60px; /* 固定高度 */
+            z-index: 1000; /* 确保底部栏在其他内容之上 */
+            margin-top: 20px; /* 添加与最后一个卡片的间隔 */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar"> <!-- 新增导航栏 -->
+        <a href="../index.html">主页</a>
+        <a href="article.html">文章</a>
+        <a href="project.html">项目</a>
+        <a href="about.html">关于</a>
+    </div>
+    <div class="container"> <!-- 添加容器以控制卡片的布局 -->
+        <div class="card" onclick="location.href='../articles/article1.html'">
+            <h3>关于燃料电池负极反应方程式的简便书写方式</h3>
+            <p>作为上课时无聊的研究，讨论了燃料电池负极反应方程式的简便书写方式</p>
+            <div class="tags">
+                <div class="tag">化学</div>
+                <div class="tag">电池</div>
+            </div>
+            <div class="read-more">阅读全文</div>
+            <div class="date-label">2021-02-20</div>
+        </div>
+    </div>
+    <div class="footer"> <!-- 新增底部栏 -->
+        <p>Weranry© 2021 - <span id="currentYear"></span> 文章展示页. 已经稳定运行 <span id="daysRunning"></span> 天.</p>
+    </div>
+    <script>
+        const startDate = new Date('2021-02-20');
+        const today = new Date();
+        const timeDiff = today - startDate;
+        const daysRunning = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+        document.getElementById('daysRunning').textContent = daysRunning;
+        document.getElementById('currentYear').textContent = today.getFullYear();
+    </script>
+</body>
+</html>

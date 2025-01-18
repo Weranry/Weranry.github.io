@@ -82,16 +82,8 @@
         }
 
         .personal-info {
-            width: 30%;
+            width: 80%;
             height: 360px;
-        }
-
-        .projects-articles {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 50%;
-            height: 400px;
         }
 
         .card {
@@ -119,50 +111,6 @@
             overflow: hidden;
         }
 
-        .card-label {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            z-index: 1;
-        }
-
-        .project-card .date-container {
-            position: absolute;
-            bottom: 10px;
-            left: 20px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .project-card .version-date,
-        .project-card .update-date,
-        .article-card .tag,
-        .article-card .date-label {
-            background-color: #f0f0f0;
-            border-radius: 12px;
-            padding: 4px 10px;
-            font-size: 0.8em;
-            color: #555;
-        }
-
-        .article-card .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .article-card .date-label {
-            position: absolute;
-            bottom: 10px;
-            right: 20px;
-        }
-
         @media (max-width: 1024px) {
             .container {
                 flex-direction: column;
@@ -186,40 +134,19 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="index.html">主页</a>
-        <a href="pages/article.html">文章</a>
-        <a href="pages/project.html">项目</a>
-        <a href="pages/about.html">关于</a>
+        <a href="../index.html">主页</a>
+        <a href="article.html">文章</a>
+        <a href="project.html">项目</a>
+        <a href="about.html">关于</a>
     </div>
     <div class="container">
-        <div class="personal-info" onclick="location.href='pages/about.html'">
+        <div class="personal-info" onclick="location.href='about.html'">
             <h3>介绍</h3>
             <p>Here is Weranry</p>
         </div>
-        <div class="projects-articles">
-            <div class="card project-card" onclick="location.href='project/pages/convert.html'">
-                <div class="card-label">最新项目</div>
-                <h3>进制转换器</h3>
-                <p>用JavaScript制作了一个进制转换器</p>
-                <div class="date-container">
-                    <div class="version-date">1.0.0</div>
-                    <div class="update-date">2023-01-08</div>
-                </div>
-            </div>
-            <div class="card article-card" onclick="location.href='articles/article1.html'">
-                <div class="card-label">最新文章</div>
-                <h3>关于燃料电池负极反应方程式的简便书写方式</h3>
-                <p>作为上课时无聊的研究，讨论了燃料电池负极反应方程式的简便书写方式</p>
-                <div class="tags">
-                    <div class="tag">化学</div>
-                    <div class="tag">电池</div>
-                </div>
-                <div class="date-label">2021-02-20</div>
-            </div>
-        </div>
     </div>
     <div class="footer">
-        <p>Weranry© 2021 - <span id="currentYear"></span> 主页. 已经稳定运行 <span id="daysRunning"></span> 天.</p>
+        <p>Weranry© 2021 - <span id="currentYear"></span> 关于. 已经稳定运行 <span id="daysRunning"></span> 天.</p>
     </div>
     <script>
         const startDate = new Date('2021-02-20');
