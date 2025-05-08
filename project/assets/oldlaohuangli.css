@@ -1,0 +1,93 @@
+.container {
+    display: flex;
+}
+.column {
+    flex: 1; /* 让三列等宽 */
+    padding: 10px;
+}
+
+@media (max-width: 768px) {
+    .container {
+      flex-direction: column; /* 在手机上切换为单列布局 */
+    }
+  }
+.good {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 400px;
+}
+.bad {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 400px;
+}
+.content ul {
+	list-style: none;
+	margin:10px 0 0;
+	padding:0;
+}
+
+.content ul li {
+	line-height:150%;
+	font-size: 15pt;
+	font-weight: bold;
+	color: #444;
+}
+
+.content ul li div.description {
+	font-size: 11pt;
+	font-weight: normal;
+	color: #777;
+	line-height: 110%;
+	margin-bottom: 10px;
+}
+
+.good .title {
+    display: inline-block;
+	font-weight: bold;
+	text-align: center;
+	font-size: 30pt;
+}
+
+.bad .title {
+    display: inline-block;
+	font-weight: bold;
+	text-align: center;
+	font-size: 30pt;
+}
+.line-tip {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 400px;
+}
+.qushi {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 400px;
+}
+
+.date {
+    border: 1px solid #000000;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    margin: 10px auto;
+    padding: 10px;
+    max-width: 400px;
+}
